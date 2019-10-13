@@ -22,6 +22,7 @@ end
 --- Publishes a message to Kafka.
 -- Must run in the context of `ngx.timer.at`.
 local function log(premature, conf, message)
+
   if premature then
     return
   end
@@ -47,6 +48,7 @@ local function log(premature, conf, message)
   end
 
   local ok, err = producer:send(conf.topic, nil, cjson_encode(message))
+
   if not ok then
     ngx.log(ngx.ERR, "[kafka-log] failed to send a message on topic ", conf.topic, ": ", err)
     return
@@ -57,7 +59,7 @@ function KafkaLogHandler:new()
   KafkaLogHandler.super.new(self, "kafka-log")
 end
 
-function KafkaLogHandler:log(conf, other)
+function KafkaLogHandler:log(conf)
   KafkaLogHandler.super.log(self)
 
   local message = basic_serializer.serialize(ngx)
