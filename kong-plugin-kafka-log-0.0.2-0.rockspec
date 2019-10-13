@@ -1,8 +1,7 @@
 package = "kong-plugin-kafka-log"
 version = "0.0.2-0"
 source = {
-   url = "git+https://github.com:s3ni0r/kong-plugin-kafka-log.git",
-   tag = "0.0.2"
+   url = "git://github.com/s3ni0r/kong-plugin-kafka-log"
 }
 description = {
    summary = "This plugin sends request and response logs to Kafka.",
@@ -10,8 +9,8 @@ description = {
    license = "Apache 2.0"
 }
 dependencies = {
-   "lua >= 5.1, < 5.2",
-   "lua-resty-kafka >= 0.07"
+   "lua >= 5.1",
+   "lua-resty-kafka >= 0.06"
 }
 build = {
    type = "builtin",
